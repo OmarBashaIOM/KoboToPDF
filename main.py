@@ -63,10 +63,12 @@ while counter < len(ListFormated):
         )  #ben name
         fuuid = str(ListFormated[counter]['formhub/uuid'])
         uuid = str(ListFormated[counter]['_uuid'])
-
-        bnsig = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
+        try:
+                  bnsig = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
             ListFormated[counter]
             ['group_mh8nj39/group_za0rs72/Beneficiary_Signature_Voucher'])
+        except:
+          bnsig=Image.open("nullph.png")
 
         vpho = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
             ListFormated[counter]['group_mh8nj39/group_za0rs72/Voucher_Photo'])
@@ -178,8 +180,12 @@ while counter < len(ListFormated):
         pdf.drawText(text)
 
         #Load Image From URL
-        resbnsig = requests.get(bnsig, auth=HTTPBasicAuth(kuser, kpass))
-        bnsigimage = Image.open(BytesIO(resbnsig.content))
+        try:
+          resbnsig = requests.get(bnsig, auth=HTTPBasicAuth(kuser, kpass))
+          bnsigimage = Image.open(BytesIO(resbnsig.content))
+        except:
+          bnsigimage = Image.open("nullph.png")
+
         new_width = 150
         new_height = 90
         bnsigimage = bnsigimage.resize((new_width, new_height),
@@ -187,24 +193,33 @@ while counter < len(ListFormated):
         pdf.drawInlineImage(bnsigimage, 13.5 * cm, 18 * cm)
 
         #Load Image From URL
-        resvpho = requests.get(vpho, auth=HTTPBasicAuth(kuser, kpass))
-        vphoimage = Image.open(BytesIO(resvpho.content))
+        try:
+          resvpho = requests.get(vpho, auth=HTTPBasicAuth(kuser, kpass))
+          vphoimage = Image.open(BytesIO(resvpho.content))
+        except: 
+          vphoimage = Image.open("nullph.png")
         new_width = 150
         new_height = 150
         vphoimage = vphoimage.resize((new_width, new_height), Image.ANTIALIAS)
         pdf.drawInlineImage(vphoimage, 3 * cm, 10 * cm)
 
         #Load Image From URL
-        resssig = requests.get(ssig, auth=HTTPBasicAuth(kuser, kpass))
-        ssigimage = Image.open(BytesIO(resssig.content))
+        try:
+          resssig = requests.get(ssig, auth=HTTPBasicAuth(kuser, kpass))
+          ssigimage = Image.open(BytesIO(resssig.content))
+        except: 
+          ssigimage = Image.open("nullph.png")
         new_width = 150
         new_height = 150
         ssigimage = ssigimage.resize((new_width, new_height), Image.ANTIALIAS)
         pdf.drawInlineImage(ssigimage, 13.5 * cm, 2 * cm)
 
         #Load Image From URL
-        residpho = requests.get(idpho, auth=HTTPBasicAuth(kuser, kpass))
-        idphoimage = Image.open(BytesIO(residpho.content))
+        try:
+          residpho = requests.get(idpho, auth=HTTPBasicAuth(kuser, kpass))
+          idphoimage = Image.open(BytesIO(residpho.content))
+        except: 
+          idphoimage = Image.open("nullph.png")
         new_width = 150
         new_height = 150
         idphoimage = idphoimage.resize((new_width, new_height),
