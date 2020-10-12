@@ -69,16 +69,24 @@ while counter < len(ListFormated):
             ['group_mh8nj39/group_za0rs72/Beneficiary_Signature_Voucher'])
         except:
           bnsig=Image.open("nullph.png")
-
-        vpho = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
+          try:
+            vpho = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
             ListFormated[counter]['group_mh8nj39/group_za0rs72/Voucher_Photo'])
-
-        ssig = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
+          except:
+            vpho=Image.open("nullph.png")
+        try:
+          ssig = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
             ListFormated[counter]
             ['group_mh8nj39/group_za0rs72/Signature_of_IOM_Staff'])
+        except:
+            ssig=Image.open("nullph.png")
 
-        idpho = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
+        try:
+          idpho = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
             ListFormated[counter]['group_mh8nj39/group_za0rs72/ID_Photo'])
+        except:
+            idpho=Image.open("nullph.png")
+
 
         print('Data Imported')
         # Doc Details
