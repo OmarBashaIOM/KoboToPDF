@@ -199,7 +199,7 @@ while counter < len(ListFormated):
         new_width = 150
         new_height = 150
         vphoimage = vphoimage.resize((new_width, new_height), Image.ANTIALIAS)
-        pdf.drawInlineImage(vphoimage,17.5 * cm, 28.22 * cm)
+        pdf.drawInlineImage(vphoimage,14 * cm, 10 * cm)
 
         #Load Image From URL
         
@@ -220,7 +220,7 @@ while counter < len(ListFormated):
         new_height = 150
         idphoimage = idphoimage.resize((new_width, new_height),
                                        Image.ANTIALIAS)
-        pdf.drawInlineImage(idphoimage, 14 * cm, 10 * cm)
+        pdf.drawInlineImage(idphoimage, 3 * cm, 10 * cm)
 
         #Load Image From URL
         #residpho = requests.get(idpho, auth=HTTPBasicAuth(kuser, kpass))
@@ -228,7 +228,7 @@ while counter < len(ListFormated):
         new_width = 97
         new_height = 49
         l = idphoimage.resize((new_width, new_height), Image.ANTIALIAS)
-        pdf.drawInlineImage(l,  3 * cm, 10 * cm )
+        pdf.drawInlineImage(l,  17.5 * cm, 28.22 * cm )
 
         pdf.save()
         print('PDF Created')
