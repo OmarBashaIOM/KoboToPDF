@@ -28,7 +28,9 @@ if not os.path.exists(directory):
 kuser = 'iomammemergencymande'
 kpass = 'IOM@Amman_2018'
 
-KoboUrl = 'https://kc.humanitarianresponse.info/api/v1/data/623205?format=jsonp'  #Kobo JSON Link
+#Kobo JSON Link
+KoboUrl = 'https://kc.humanitarianresponse.info/api/v1/data/623205?format=jsonp'  
+
 
 response = requests.get(
     KoboUrl, auth=HTTPBasicAuth(kuser, kpass))  #Get JSON Data from Kobo Link
@@ -197,7 +199,7 @@ while counter < len(ListFormated):
         new_width = 150
         new_height = 150
         vphoimage = vphoimage.resize((new_width, new_height), Image.ANTIALIAS)
-        pdf.drawInlineImage(vphoimage, 3 * cm, 10 * cm)
+        pdf.drawInlineImage(vphoimage,17.5 * cm, 28.22 * cm)
 
         #Load Image From URL
         
@@ -226,7 +228,7 @@ while counter < len(ListFormated):
         new_width = 97
         new_height = 49
         l = idphoimage.resize((new_width, new_height), Image.ANTIALIAS)
-        pdf.drawInlineImage(l, 17.5 * cm, 28.22 * cm)
+        pdf.drawInlineImage(l,  3 * cm, 10 * cm )
 
         pdf.save()
         print('PDF Created')
