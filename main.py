@@ -77,8 +77,13 @@ while counter < len(ListFormated):
             ListFormated[counter]
             ['group_mh8nj39/group_za0rs72/Signature_of_IOM_Staff'])
 
-        idpho = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
+        try:
+          idpho = linkbase + linkjoin + fuuid + linkjoin + uuid + linkjoin + str(
             ListFormated[counter]['group_mh8nj39/group_za0rs72/ID_Photo'])
+        except:
+          idpho="aha"
+
+
 
         print('Data Imported')
         # Doc Details
@@ -212,9 +217,11 @@ while counter < len(ListFormated):
         pdf.drawInlineImage(ssigimage, 13.5 * cm, 2 * cm)
 
         #Load Image From URL
-        
-        residpho = requests.get(idpho, auth=HTTPBasicAuth(kuser, kpass))
-        idphoimage = Image.open(BytesIO(residpho.content))
+        try:
+          residpho = requests.get(idpho, auth=HTTPBasicAuth(kuser, kpass))
+          idphoimage = Image.open(BytesIO(residpho.content))
+        except:
+          idphoimage = Image.open("nullph.png")
         
         new_width = 150
         new_height = 150
@@ -224,10 +231,10 @@ while counter < len(ListFormated):
 
         #Load Image From URL
         #residpho = requests.get(idpho, auth=HTTPBasicAuth(kuser, kpass))
-        idphoimage = Image.open(BytesIO(imgdata))
+        idphoimag = Image.open(BytesIO(imgdata))
         new_width = 97
         new_height = 49
-        l = idphoimage.resize((new_width, new_height), Image.ANTIALIAS)
+        l = idphoimag.resize((new_width, new_height), Image.ANTIALIAS)
         pdf.drawInlineImage(l,  17.5 * cm, 28.22 * cm )
 
         pdf.save()
